@@ -22,7 +22,7 @@ spark=SparkSession.builder.appName('HeartDiseasePrediction').getOrCreate()
 sc = spark.sparkContext
 
 # Creating spark dataframe of input csv file
-df_unbalanced = spark.read.csv('hdfs://localhost:9000/user/bigdata2022/Input/input.csv', inferSchema = True, header = True)
+df_unbalanced = spark.read.csv('hdfs://localhost:9000/Input/input.csv', inferSchema = True, header = True)
 
 
 

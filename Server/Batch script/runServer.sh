@@ -20,7 +20,7 @@ $HADOOP_DIR/bin/hdfs dfsadmin -safemode leave
 $HADOOP_DIR/bin/hdfs dfs -rm -r Input
 
 #LOADING INPUT IN HDFS
-$HADOOP_DIR/bin/hdfs dfs -put ../Input /user/bigdata2022
+$HADOOP_DIR/bin/hdfs dfs -put ../Input
 
 #INSTALLING PYTHON MODULES
 pip install pyspark==3.1.3

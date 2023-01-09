@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/ol@v7.1.0/ol.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Wendy+One|Donegal+One|Fjalla+One' rel='stylesheet' type='text/css'>
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <div class="title"><h1 class="title"> Heart diseases statistics </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/correlation.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> Age&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/Age.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> AlcoholDrinkingHeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/AlcoholDrinking.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> Asthma&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/Asthma.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> BMI&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/BMI.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> Diabetic&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/Diabetic.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> DiffWalking&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/DiffWalking.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> GenHealth&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/GenHealth.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> KidneyDisease&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/KidneyDisease.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> MentalHealth&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/MentalHealth.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> PhysicalActivityHeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/PhysicalActivity.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> PhysicalHealth&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/PhysicalHealth.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> Race&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/Race.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> Sex&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/Sex.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> SkinCancer&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/SkinCancer.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> SleepTime&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/SleepTime.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> Smoking&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/Smoking.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> Stroke&HeartDisease relation </h1></div>
+            <div style="text-align: center;">
+                <img height="600" src="../Server/OutputImg/Stroke.png">
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="slideTitle"> Predict heart disease </h1></div>
+            <div style="display: grid; grid-template-columns: 33% 33% 33%; justify-items: center;">
+                <div class="scrollbar_div">
+                    <div class="inputs">
+                        <div class="tab">Are you male or female?<br><br>
+                            <select id="Sex" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="tab">Your age:<br><br>
+                            <select id="AgeCategory" required>
+                                <option value="18-24">18-24</option>
+                                <option value="25-29">25-29</option>
+                                <option value="30-34">30-34</option>
+                                <option value="35-39">35-39</option>
+                                <option value="40-44">40-44</option>
+                                <option value="45-49">45-49</option>
+                                <option value="50-54">50-54</option>
+                                <option value="55-59">55-59</option>
+                                <option value="60-64">60-64</option>
+                                <option value="65-69">65-69</option>
+                                <option value="70-74">70-74</option>
+                                <option value="75-79">75-79</option>
+                                <option value="80 or older">80 or older</option>                            
+                            </select>
+                        </div>
+                        <div class="tab">Your ethnicity:<br><br>
+                            <select id="Race" required>
+                                <option value="American Indian/Alaskan Native">American Indian/Alaskan Native</option>
+                                <option value="White">White</option>
+                                <option value="Hispanic">Hispanic</option>
+                                <option value="Black">Black</option>
+                                <option value="Asian">Asian</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="tab">Body Mass Index (BMI):<br><br>
+                            <input type="number" id="BMI" min="0" max="100">
+                        </div>
+                        <div class="tab">Have you smoked at least 100 cigarettes in your entire life?<br><br>
+                            <select id="Smoking" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="tab">Heavy drinkers (more than 14 drinks per week for men and 7 for women)<br><br>
+                            <select id="AlcoholDrinking" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="tab">On average, how many hours of sleep do you get in a 24-hour period?<br><br>
+                            <select id="SleepTime" required></select>
+                        </div>
+                        <div class="tab">Adults who reported doing physical activity or exercise during the past 30 days other than their regular job<br><br>
+                            <select id="PhysicalActivity" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="tab">Ever told you had a stroke?<br><br>
+                            <select id="Stroke" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="tab">For how many days during the past 30 was your physical health not good?<br><br>
+                            <select id="PhysicalHealth" required></select>
+                        </div>
+                        <div class="tab">For how many days during the past 30 was your mental health not good?<br><br>
+                            <select id="MentalHealth" required></select>
+                        </div>
+                        <div class="tab">Do you have serious difficulty walking or climbing stairs?<br><br>
+                            <select id="DiffWalking" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="tab">Ever told you had diabetes?<br><br>
+                            <select id="Diabetic" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                <option value="No, borderline diabetes">No, borderline diabetes</option>
+                                <option value="Yes (during pregnancy)">Yes (during pregnancy)</option>
+                            </select>
+                        </div>
+                        <div class="tab">Would you say that in general your health is...<br><br>
+                            <select id="GenHealth" required>
+                                <option value="Poor">Poor</option>
+                                <option value="Fair">Fair</option>
+                                <option value="Good">Good</option>
+                                <option value="Very good">Very good</option>
+                                <option value="Excellent">Excellent</option>
+                            </select>
+                        </div>
+                        <div class="tab">Ever told you had asthma?<br><br>
+                            <select id="Asthma" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>  
+                        <div class="tab">Not including kidney stones, bladder infection or incontinence, were you ever told you had kidney disease?<br><br>
+                            <select id="KidneyDisease" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="tab">Ever told you had skin cancer?<br><br>
+                            <select id="SkinCancer" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div style="overflow:auto;">
+                            <button type="submit" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                            <button type="submit" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                            <button type="submit" id="submitBtn" onclick="getPrediction();">Predict</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid-item" id="resultDiv"></div>
+            </div>
+        </div>
+    </div>
+    
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <br>
+    
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+        <span class="dot" onclick="currentSlide(7)"></span>
+        <span class="dot" onclick="currentSlide(8)"></span>
+        <span class="dot" onclick="currentSlide(9)"></span>
+        <span class="dot" onclick="currentSlide(10)"></span>
+        <span class="dot" onclick="currentSlide(11)"></span>
+        <span class="dot" onclick="currentSlide(12)"></span>
+        <span class="dot" onclick="currentSlide(13)"></span>
+        <span class="dot" onclick="currentSlide(14)"></span>
+        <span class="dot" onclick="currentSlide(15)"></span>
+        <span class="dot" onclick="currentSlide(16)"></span>
+        <span class="dot" onclick="currentSlide(17)"></span>
+        <span class="dot" onclick="currentSlide(18)"></span>
+        <span class="dot" onclick="currentSlide(19)"></span>
+    </div>
+
+    <script src="js/controller.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/prediction.js"></script>
+
+</body>
+</html>

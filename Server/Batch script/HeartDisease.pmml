@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="JPMML-SparkML library" version="2.2.0"/>
+		<Timestamp>2023-01-07T19:46:22Z</Timestamp>
+	</Header>
+	<DataDictionary>
+		<DataField name="AgeCategory" optype="categorical" dataType="string">
+			<Value value="65-69"/>
+			<Value value="70-74"/>
+			<Value value="60-64"/>
+			<Value value="80 or older"/>
+			<Value value="55-59"/>
+			<Value value="75-79"/>
+			<Value value="50-54"/>
+			<Value value="45-49"/>
+			<Value value="40-44"/>
+			<Value value="35-39"/>
+			<Value value="18-24"/>
+			<Value value="30-34"/>
+			<Value value="25-29"/>
+		</DataField>
+		<DataField name="Smoking" optype="categorical" dataType="string">
+			<Value value="No"/>
+			<Value value="Yes"/>
+		</DataField>
+		<DataField name="AlcoholDrinking" optype="categorical" dataType="string">
+			<Value value="No"/>
+			<Value value="Yes"/>
+		</DataField>
+		<DataField name="Stroke" optype="categorical" dataType="string">
+			<Value value="No"/>
+			<Value value="Yes"/>
+		</DataField>
+		<DataField name="DiffWalking" optype="categorical" dataType="string">
+			<Value value="No"/>
+			<Value value="Yes"/>
+		</DataField>
+		<DataField name="Sex" optype="categorical" dataType="string">
+			<Value value="Male"/>
+			<Value value="Female"/>
+		</DataField>
+		<DataField name="Race" optype="categorical" dataType="string">
+			<Value value="White"/>
+			<Value value="Hispanic"/>
+			<Value value="Black"/>
+			<Value value="Other"/>
+			<Value value="Asian"/>
+			<Value value="American Indian/Alaskan Native"/>
+		</DataField>
+		<DataField name="Diabetic" optype="categorical" dataType="string">
+			<Value value="No"/>
+			<Value value="Yes"/>
+			<Value value="No, borderline diabetes"/>
+			<Value value="Yes (during pregnancy)"/>
+		</DataField>
+		<DataField name="PhysicalActivity" optype="categorical" dataType="string">
+			<Value value="Yes"/>
+			<Value value="No"/>
+		</DataField>
+		<DataField name="GenHealth" optype="categorical" dataType="string">
+			<Value value="Very good"/>
+			<Value value="Good"/>
+			<Value value="Excellent"/>
+			<Value value="Fair"/>
+			<Value value="Poor"/>
+		</DataField>
+		<DataField name="Asthma" optype="categorical" dataType="string">
+			<Value value="No"/>
+			<Value value="Yes"/>
+		</DataField>
+		<DataField name="KidneyDisease" optype="categorical" dataType="string">
+			<Value value="No"/>
+			<Value value="Yes"/>
+		</DataField>
+		<DataField name="SkinCancer" optype="categorical" dataType="string">
+			<Value value="No"/>
+			<Value value="Yes"/>
+		</DataField>
+		<DataField name="HeartDisease" optype="categorical" dataType="string">
+			<Value value="No"/>
+			<Value value="Yes"/>
+		</DataField>
+		<DataField name="BMI" optype="continuous" dataType="double"/>
+		<DataField name="PhysicalHealth" optype="continuous" dataType="double"/>
+		<DataField name="MentalHealth" optype="continuous" dataType="double"/>
+		<DataField name="SleepTime" optype="continuous" dataType="double"/>
+	</DataDictionary>
+	<RegressionModel functionName="classification" normalizationMethod="logit">
+		<MiningSchema>
+			<MiningField name="HeartDisease" usageType="target"/>
+			<MiningField name="AgeCategory"/>
+			<MiningField name="Smoking"/>
+			<MiningField name="AlcoholDrinking"/>
+			<MiningField name="Stroke"/>
+			<MiningField name="DiffWalking"/>
+			<MiningField name="Sex"/>
+			<MiningField name="Race"/>
+			<MiningField name="Diabetic"/>
+			<MiningField name="PhysicalActivity"/>
+			<MiningField name="GenHealth"/>
+			<MiningField name="Asthma"/>
+			<MiningField name="KidneyDisease"/>
+			<MiningField name="SkinCancer"/>
+			<MiningField name="BMI"/>
+			<MiningField name="PhysicalHealth"/>
+			<MiningField name="MentalHealth"/>
+			<MiningField name="SleepTime"/>
+		</MiningSchema>
+		<Output>
+			<OutputField name="pmml(prediction)" optype="categorical" dataType="string" isFinalResult="false"/>
+			<OutputField name="prediction" optype="continuous" dataType="double" feature="transformedValue">
+				<MapValues outputColumn="data:output" dataType="double">
+					<FieldColumnPair field="pmml(prediction)" column="data:input"/>
+					<InlineTable>
+						<row>
+							<data:input>No</data:input>
+							<data:output>0</data:output>
+						</row>
+						<row>
+							<data:input>Yes</data:input>
+							<data:output>1</data:output>
+						</row>
+					</InlineTable>
+				</MapValues>
+			</OutputField>
+			<OutputField name="probability(No)" optype="continuous" dataType="double" feature="probability" value="No"/>
+			<OutputField name="probability(Yes)" optype="continuous" dataType="double" feature="probability" value="Yes"/>
+		</Output>
+		<LocalTransformations>
+			<DerivedField name="normalizedFeatures[0]" optype="continuous" dataType="double">
+				<Apply function="/">
+					<Apply function="-">
+						<FieldRef field="BMI"/>
+						<Constant dataType="double">12.02</Constant>
+					</Apply>
+					<Constant dataType="double">82.83</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="normalizedFeatures[1]" optype="continuous" dataType="double">
+				<Apply function="/">
+					<Apply function="-">
+						<FieldRef field="PhysicalHealth"/>
+						<Constant dataType="double">0.0</Constant>
+					</Apply>
+					<Constant dataType="double">30.0</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="normalizedFeatures[2]" optype="continuous" dataType="double">
+				<Apply function="/">
+					<Apply function="-">
+						<FieldRef field="MentalHealth"/>
+						<Constant dataType="double">0.0</Constant>
+					</Apply>
+					<Constant dataType="double">30.0</Constant>
+				</Apply>
+			</DerivedField>
+			<DerivedField name="normalizedFeatures[3]" optype="continuous" dataType="double">
+				<Apply function="/">
+					<Apply function="-">
+						<FieldRef field="SleepTime"/>
+						<Constant dataType="double">1.0</Constant>
+					</Apply>
+					<Constant dataType="double">23.0</Constant>
+				</Apply>
+			</DerivedField>
+		</LocalTransformations>
+		<RegressionTable intercept="0.037363702038838875" targetCategory="Yes">
+			<NumericPredictor name="normalizedFeatures[0]" coefficient="0.7525286962134401"/>
+			<NumericPredictor name="normalizedFeatures[1]" coefficient="0.1417541244198775"/>
+			<NumericPredictor name="normalizedFeatures[2]" coefficient="0.1923890831194535"/>
+			<NumericPredictor name="normalizedFeatures[3]" coefficient="-0.5919680586854802"/>
+			<CategoricalPredictor name="AgeCategory" value="65-69" coefficient="2.3464129890241274"/>
+			<CategoricalPredictor name="AgeCategory" value="70-74" coefficient="2.6430883566964827"/>
+			<CategoricalPredictor name="AgeCategory" value="60-64" coefficient="2.0834064552147575"/>
+			<CategoricalPredictor name="AgeCategory" value="80 or older" coefficient="3.157902817015517"/>
+			<CategoricalPredictor name="AgeCategory" value="55-59" coefficient="1.8064233520028643"/>
+			<CategoricalPredictor name="AgeCategory" value="75-79" coefficient="2.8615743520859307"/>
+			<CategoricalPredictor name="AgeCategory" value="50-54" coefficient="1.5543790993797717"/>
+			<CategoricalPredictor name="AgeCategory" value="45-49" coefficient="1.1220574079687566"/>
+			<CategoricalPredictor name="AgeCategory" value="40-44" coefficient="0.8276645816880474"/>
+			<CategoricalPredictor name="AgeCategory" value="35-39" coefficient="0.4489997151723601"/>
+			<CategoricalPredictor name="AgeCategory" value="18-24" coefficient="-0.12550525826725456"/>
+			<CategoricalPredictor name="AgeCategory" value="30-34" coefficient="0.3458447383750563"/>
+			<CategoricalPredictor name="Smoking" value="No" coefficient="-0.3702269431938815"/>
+			<CategoricalPredictor name="AlcoholDrinking" value="No" coefficient="0.22996824891741485"/>
+			<CategoricalPredictor name="Stroke" value="No" coefficient="-1.1575106540934532"/>
+			<CategoricalPredictor name="DiffWalking" value="No" coefficient="-0.23449584081559"/>
+			<CategoricalPredictor name="Sex" value="Male" coefficient="0.7349951609412241"/>
+			<CategoricalPredictor name="Race" value="White" coefficient="-0.08590344653663169"/>
+			<CategoricalPredictor name="Race" value="Hispanic" coefficient="-0.21179290364150863"/>
+			<CategoricalPredictor name="Race" value="Black" coefficient="-0.31392209121776427"/>
+			<CategoricalPredictor name="Race" value="Other" coefficient="-0.05171187102691071"/>
+			<CategoricalPredictor name="Race" value="Asian" coefficient="-0.5077915816986647"/>
+			<CategoricalPredictor name="Diabetic" value="No" coefficient="-0.1439949214845922"/>
+			<CategoricalPredictor name="Diabetic" value="Yes" coefficient="0.35418930509414026"/>
+			<CategoricalPredictor name="Diabetic" value="No, borderline diabetes" coefficient="-0.004191997486397026"/>
+			<CategoricalPredictor name="PhysicalActivity" value="Yes" coefficient="0.018748002605423104"/>
+			<CategoricalPredictor name="GenHealth" value="Very good" coefficient="-1.431354722478133"/>
+			<CategoricalPredictor name="GenHealth" value="Good" coefficient="-0.8522880357045847"/>
+			<CategoricalPredictor name="GenHealth" value="Excellent" coefficient="-1.9002930743359125"/>
+			<CategoricalPredictor name="GenHealth" value="Fair" coefficient="-0.36570052523641533"/>
+			<CategoricalPredictor name="Asthma" value="No" coefficient="-0.2962193477908093"/>
+			<CategoricalPredictor name="KidneyDisease" value="No" coefficient="-0.5937939974243384"/>
+			<CategoricalPredictor name="SkinCancer" value="No" coefficient="-0.12347491719706757"/>
+		</RegressionTable>
+		<RegressionTable intercept="0.0" targetCategory="No"/>
+	</RegressionModel>
+</PMML>

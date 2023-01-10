@@ -2,8 +2,6 @@ addIntDropDown("PhysicalHealth", 0, 30);
 addIntDropDown("MentalHealth", 0, 30);
 addIntDropDown("SleepTime", 0, 24);
 
-addLooadingGif();
-
 
 function addIntDropDown(dropdownId, min, max) {
     selectMenu = document.getElementById(dropdownId);

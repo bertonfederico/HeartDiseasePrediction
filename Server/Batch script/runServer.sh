@@ -15,12 +15,14 @@ $HADOOP_DIR/sbin/start-yarn.sh
 jps
 
 #DELETING INPUT/OUTPUT DIRECTORY IN HDFS AND LOCAL
-rm -r ../OutputImg/*
+rm -r ../OutputImg/Pie/*
+rm -r ../OutputImg/Rel/*
+rm -r ../OutputImg/correlation.png
 $HADOOP_DIR/bin/hdfs dfsadmin -safemode leave
-$HADOOP_DIR/bin/hdfs dfs -rm -r Input
+$HADOOP_DIR/bin/hdfs dfs -rm -r /Input
 
 #LOADING INPUT IN HDFS
-$HADOOP_DIR/bin/hdfs dfs -put ../Input
+$HADOOP_DIR/bin/hdfs dfs -put ../Input /
 
 #INSTALLING PYTHON MODULES
 pip install pyspark==3.1.3
@@ -34,7 +36,7 @@ pip install --upgrade openscoring
 java -jar ../lib/openscoring-server-executable-2.1.1.jar &
 
 #DISABLING CHROME SECURITY
-google-chrome --user-data-dir="/var/tmp/Chrome" --disable-web-security
+google-chrome --disable-web-security
 
 #SETTING SPARK AND CREATE PREDICTION MODEL
 $SPARK_HOME/bin/spark-submit --packages org.jpmml:pmml-sparkml:2.2.0,org.jpmml:pmml-sparkml-lightgbm:2.2.0,org.jpmml:pmml-sparkml-xgboost:2.2.0  --master yarn  --deploy-mode client  --driver-memory 3g  --executor-memory 3g  --executor-cores 2  --queue default ../PySpark/createModel.py

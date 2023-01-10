@@ -1,5 +1,4 @@
 import pkg_resources
-#pkg_resources.require("pyspark==3.1.3")
 import pyspark
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -29,9 +28,9 @@ df_unbalanced = spark.read.csv('hdfs://localhost:9000/Input/input.csv', inferSch
 ############################################
 ###### Anlizing dataset with charts ########
 ############################################
-# Splitting columns in categorical and continuous
-continuousFeatures = ['BMI', 'PhysicalHealth', 'MentalHealth', 'Age', 'SleepTime']
-categoricalFeatures = ['Smoking', 'AlcoholDrinking', 'Stroke', 'DiffWalking', 'Sex', 'Race', 'Diabetic', 'PhysicalActivity', 'GenHealth', 'Asthma', 'KidneyDisease', 'SkinCancer']
+# Setting Seaborn features
+sns.set(font_scale=2)
+sns.set_style("darkgrid")
 
 # Replace age-range with its avg
 decodeAgeMap = {'55-59':'57', '80 or older':'80', '65-69':'67', '75-79':'77','40-44':'42','70-74':'72','60-64':'62', '50-54':'52','45-49':'47','18-24':'21','35-39':'37', '30-34':'32','25-29':'27'}
@@ -40,33 +39,62 @@ df_chart = df_chart.withColumnRenamed("AgeCategory","Age")
 df_chart = df_chart.withColumn("Age", col("Age").cast("integer"))
 df_pd = df_chart.toPandas()
 
-# Setting Seaborn features
-sns.set(font_scale=2)
-sns.set_style("darkgrid")
+# Splitting columns in categorical and continuous
+continuousFeatures = ['BMI', 'PhysicalHealth', 'MentalHealth', 'Age', 'SleepTime']
+categoricalFeatures = ['Smoking', 'AlcoholDrinking', 'Stroke', 'DiffWalking', 'Sex', 'PhysicalActivity', 'GenHealth', 'Asthma', 'KidneyDisease', 'SkinCancer']
+categoricalFeaturesToChange = ['Race', 'Diabetic']
+
+# Percentage pie charts
+def plotDistributionCategoricalChart(name_feature, indexesToChange, labelsToChange):
+    fig,ax = plt.subplots(figsize=(8,8))
+    labels = df_pd[name_feature].unique()
+    ax.pie(df_pd[name_feature].value_counts(), autopct='%1.1f%%', startangle=90)
+    plt.title("Distribution of " + name_feature + " responsese")
+    i = 0
+    for index in indexesToChange:
+        labels[index] = labelsToChange[i]
+        i = i+1
+    plt.legend(labels, loc="best")
+    plt.tight_layout()
+    plt.savefig('../OutputImg/Pie/' + name_feature + '.png', transparent=True)
+for catFeat in (categoricalFeatures + ['HeartDisease']):
+    plotDistributionCategoricalChart(catFeat, [], [])
+plotDistributionCategoricalChart('Race', [3], ['Indian/Alaskan'])
+plotDistributionCategoricalChart('Diabetic', [2, 3], ['Borderline', 'Pregnancy'])
 
 # Continuous features charts
 def plotContinuousChart(xLabel):
-    fig, ax = plt.subplots(figsize = (18,9))
+    fig, ax = plt.subplots(figsize = (25,9))
     sns.kdeplot(df_pd[df_pd["HeartDisease"]=='No'][xLabel], alpha=0.5,fill = True, color="#4285f4", label="No HeartDisease", ax = ax)
     sns.kdeplot(df_pd[df_pd["HeartDisease"]=='Yes'][xLabel], alpha=0.5,fill = True, color="#ea4335", label="HeartDisease", ax = ax)
+    sns.kdeplot(df_pd[xLabel], alpha=0.5,fill = True, color="#008000", label="Total", ax = ax)
     ax.set_xlabel(xLabel)
-    ax.set_ylabel("Frequency")
+    ax.set_ylabel("Number among respondents")
     ax.legend(loc='best')
-    plt.savefig('../OutputImg/' + xLabel + '.png')
+    plt.savefig('../OutputImg/Rel/' + xLabel + '.png', transparent=True)
 for contFeat in continuousFeatures:
     plotContinuousChart(contFeat)
 
 # Categorical geatures charts
-def plotCategoricalChart(xLabel):
-    fig, ax = plt.subplots(figsize = (18,9))
+def plotCategoricalChart(xLabel, indexesToChange, labelsToChange):
+    fig, ax = plt.subplots(figsize = (20,9))
     sns.countplot(data=df_pd, y=xLabel, hue="HeartDisease", palette=['#ea4335',"#4285f4"])
-    ax.set_xlabel("Count")
-    ax.set_ylabel(xLabel)
+    ax.set_xlabel("Number among respondents")
     ax.legend(['No HeartDisease', 'HeartDisease'], loc='best')
     sns.despine(left=True, bottom=True)
-    plt.savefig('../OutputImg/' + xLabel + '.png')
+    labels = [item.get_text() for item in ax.get_yticklabels()]
+    i = 0
+    for index in indexesToChange:
+        labels[index] = labelsToChange[i]
+        i = i+1
+    ax.set_yticklabels(labels)
+    plt.title("Number of 'Heart disease'and 'No heart disease' for each category")
+    plt.subplots_adjust(left=0.12, right=0.98, top=0.9, bottom=0.1)
+    plt.savefig('../OutputImg/Rel/' + xLabel + '.png', transparent=True)
 for catFeat in categoricalFeatures:
-    plotCategoricalChart(catFeat)
+    plotCategoricalChart(catFeat, [], [])
+plotCategoricalChart('Race', [3], ['Indian/Alaskan'])
+plotCategoricalChart('Diabetic', [2, 3], ['Borderline', 'Pregnancy'])
 
 # Changing all categorial features to continuous for correlation heatmmap
 decodeYesNoMap = {'Yes': '1', 'No': '0'}
@@ -80,103 +108,19 @@ totalDecodeMap.update(decodeDiabeticMap)
 totalDecodeMap.update(decodeSexMap)
 totalDecodeMap.update(decodeRaceMap)
 df_chart = df_chart.replace(totalDecodeMap)
-for catFeat in categoricalFeatures:
+for catFeat in (categoricalFeatures + ['HeartDisease'] + categoricalFeaturesToChange):
     df_chart = df_chart.withColumn(catFeat + "_dec", col(catFeat).cast("float")).drop(catFeat).withColumnRenamed(catFeat + "_dec", catFeat)
 df_pd = df_chart.toPandas()
+df_chart.show(10)
 
 # Correlation heatmmap
-plt.figure(figsize=(18,18))
+plt.figure(figsize=(25,18))
 cor = df_pd.corr()
-sns.heatmap(cor, annot=True, cmap=plt.cm.Reds, fmt='.2f')
-plt.savefig('../OutputImg/correlation.png')
-
-
-
-############################################
-###### Balancing unbalanced dataset ########
-############ with oversampling #############
-############################################
-df_size = df_unbalanced.count()
-
-# Undersampling dataframe portion with "HeartDisease" = "Yes"
-minor_df = df_unbalanced.filter(col("HeartDisease") == 'Yes')
-minor_df_size = minor_df.count()
-print(minor_df_size)
-minor_ratio = int((df_size/2)/minor_df_size)
-a = range(minor_ratio)
-oversampled_df = minor_df.withColumn("dummy", explode(array([lit(x) for x in a]))).drop('dummy')
-
-#Oversampling dataframe portion with "HeartDisease" = "No"
-major_df = df_unbalanced.filter(col("HeartDisease") == 'No')
-major_df_size = df_size-minor_df_size
-major_ratio = int(major_df_size/(df_unbalanced.count()/2))
-undersampled_df = major_df.sample(False, 1/major_ratio)
-
-unbalancing_ratio = major_df_size/minor_df_size
-df = oversampled_df.unionAll(undersampled_df)
-
-
-############################################
-######### Creating ML pipeline #############
-############################################
-continuousFeatures = ['BMI', 'PhysicalHealth', 'MentalHealth', 'SleepTime']
-categoricalFeatures = ['AgeCategory', 'Smoking', 'AlcoholDrinking', 'Stroke', 'DiffWalking', 'Sex', 'Race', 'Diabetic', 'PhysicalActivity', 'GenHealth', 'Asthma', 'KidneyDisease', 'SkinCancer']
-
-diseaseEncoder = StringIndexer(inputCol = "HeartDisease", outputCol = "HeartDisease_encoded")
-
-# Assembler for continuous features: all the continuous features have to be assembled as a vector in the same column to be scaled
-continuousAssembler = VectorAssembler(inputCols = continuousFeatures, outputCol = "assembledFeatures")
-
-# SCaler: scales all continuous features (assembled in column 'assembledFeatures') to be in the range [0,1]
-continuousScaler = MinMaxScaler(inputCol = "assembledFeatures", outputCol = "normalizedFeatures")
-
-# Indexer and encoder: numerical encoder for categorical features and goal column
-categoricalIndexer = [StringIndexer(inputCol = column, outputCol = column + "_indexed").fit(df) for column in categoricalFeatures]
-categoricalEncoder = OneHotEncoder(inputCols = [col + '_indexed' for col in categoricalFeatures], outputCols=[col + '_encoded' for col in categoricalFeatures])
-
-# Assembler for all features: all the features are assembled in the 'final_features' column
-input = [col + '_encoded' for col in categoricalFeatures]
-input.append('normalizedFeatures')
-totalAssembler = VectorAssembler(inputCols = input, outputCol = "final_features")
-
-# Logistic regression: suitable for categorical and noncontinuous decisions
-regressor = LogisticRegression(featuresCol = "final_features", labelCol = "HeartDisease_encoded")
-
-# Inizializing pipeline ('categoricalIndexer' is already a list, so it must be concatenated with the list of remaining stages)
-stages = categoricalIndexer + [diseaseEncoder, categoricalEncoder, continuousAssembler, continuousScaler, totalAssembler, regressor]
-pipeline = Pipeline(stages = stages)
-
-
-
-############################################
-########## training pipeline model #########
-############################################
-# Splitting dataset into traing and set datasets
-train_set, test_set = df.randomSplit([0.7,0.3])
-
-# Model training
-pipeline_model = pipeline.fit(train_set)
-
-# Making predictions
-predictions = pipeline_model.transform(test_set)
-
-# Accuracy computation
-eval = MulticlassClassificationEvaluator(labelCol="HeartDisease_encoded", predictionCol="prediction", metricName="accuracy")
-accuracy = eval.evaluate(predictions)
-
-# Training pipeline model with entire dataset
-pipeline_model = pipeline.fit(df)
-
-
-
-############################################
-####### exporting pmml pipeline model ######
-############################################
-PMMLBuilder(sc, df, pipeline_model).buildFile("HeartDisease.pmml")
-os = Openscoring("http://localhost:8080/openscoring")
-
-# Shall be available at http://localhost:8080/openscoring/model/HeartDisease
-os.deployFile("HeartDisease", "HeartDisease.pmml")
+chart = sns.heatmap(cor, annot=True, cmap=plt.cm.Reds, fmt='.2f')
+chart.set_xticklabels(chart.get_xticklabels(), rotation=45, horizontalalignment='right')
+chart.set_yticklabels(chart.get_yticklabels(), rotation=45, verticalalignment='top')
+plt.subplots_adjust(left=0.12, right=0.98, top=0.95, bottom=0.15)
+plt.savefig('../OutputImg/correlation.png', transparent=True)
 
 
 
@@ -185,32 +129,3 @@ os.deployFile("HeartDisease", "HeartDisease.pmml")
 ############################################
 sc.stop()
 
-
-
-############################################
-###### opening statistics client page ######
-############################################
-webbrowser.open_new_tab('../../Client/homePage.html')
-
-
-
-############################################
-######## printing info in consolle #########
-############################################
-print('')
-print('')
-print('####################################################################################################')
-print('####################################################################################################')
-print('####################################################################################################')
-print('########  --> Unbalancing ratio: %.3f                                                   ##########' %unbalancing_ratio)
-print('########  --> Balanced by by keeping the same size of original input dataset              ##########')
-print('########  --> Estimator: logistic regression                                              ##########')
-print('########  --> Evaluator: MulticlassClassificationEvaluator                                ##########')
-print('########  --> Prediction accurancy: %.3f                                                 ##########' %accuracy)
-print('########  --> Prediction served on: http://localhost:8080/openscoring/model/HeartDisease  ##########')
-print('########  --> Client page: ../../Client/homePage.html                                     ##########')
-print('####################################################################################################')
-print('####################################################################################################')
-print('####################################################################################################')
-print('')
-print('')

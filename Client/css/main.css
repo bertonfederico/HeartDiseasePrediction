@@ -124,11 +124,13 @@ select {
 .slideshow-container {
   position: relative;
   margin: auto;
+  height: 550;
+  display:block;
 }
 
 .mySlides {
   display: none;
-  height: 100%;
+  height: 550;
 }
 
 .prev, .next {

@@ -13,190 +13,173 @@
     <div class="slideshow-container">
         <div class="mySlides fade">
             <div class="title"><h1 class="title"> Heart diseases statistics </h1></div>
-            <div style="display: grid; grid-template-columns: 50% 50%; justify-items: center;">
+            <div style="display: grid; grid-template-columns: 10% 40% 40% 10%; justify-items: center;">
+                <div></div>
                 <div style="text-align: center;">
-                    <img height="600" src="../Server/OutputImg/correlation.png">
+                    <img height="600" src="../Server/outputImg/correlation.png">
                 </div>
                 <div style="text-align: center;">
-                    <img height="600" src="../Server/OutputImg/Pie/HeartDisease.png">
+                    <img height="600" src="../Server/outputImg/pie/heartdisease.png">
+                </div>
+                <div></div>
+            </div>
+        </div>
+        <div class="mySlides fade">
+            <div class="title"><h1 class="title"> Heart diseases & features relation </h1></div>
+            <div style="text-align:center">
+                <select onchange="showCharts(this.value)" required>
+                    <option value="Age">Age</option>
+                    <option value="BMI">BMI</option>
+                    <option value="PhysicalHealth">PhysicalHealth</option>
+                    <option value="MentalHealth">MentalHealth</option>
+                    <option value="SleepTime">SleepTime</option>
+                    <option value="Smoking">Smoking</option>
+                    <option value="AlcoholDrinking">AlcoholDrinking</option>
+                    <option value="Stroke">Stroke</option>
+                    <option value="DiffWalking">DiffWalking</option>
+                    <option value="Sex">Sex</option>
+                    <option value="PhysicalActivity">PhysicalActivity</option>
+                    <option value="GenHealth">GenHealth</option>
+                    <option value="Asthma">Asthma</option>
+                    <option value="KidneyDisease">KidneyDisease</option>
+                    <option value="SkinCancer">SkinCancer</option>
+                    <option value="Race">Race</option>
+                    <option value="Diabetic">Diabetic</option>
+                </select>
+            </div>
+            <div class="slideshow-inner-container">
+                <div class="myInnerSlides fade" id="Age" style="text-align: center;">
+                    <img height="500" src="../Server/outputImg/rel/age.png">
+                </div>
+                <div class="myInnerSlides fade" id="AlcoholDrinking" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/alcoholdrinking.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/alcoholdrinking.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="Asthma" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/asthma.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/asthma.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="BMI" style="text-align: center;">
+                    <img height="500" src="../Server/outputImg/rel/bmi.png">
+                </div>
+                <div class="myInnerSlides fade" id="Diabetic" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/diabetic.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/diabetic.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="DiffWalking" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/diffwalking.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/diffwalking.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="GenHealth" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/genhealth.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/genhealth.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="KidneyDisease" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/kidneydisease.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/kidneydisease.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="MentalHealth" style="text-align: center;">
+                    <img height="500" src="../Server/outputImg/rel/mentalhealth.png">
+                </div>
+                <div class="myInnerSlides fade" id="Race" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/race.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/race.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="PhysicalActivity" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/physicalactivity.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/physicalactivity.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="PhysicalHealth" style="text-align: center;">
+                    <img height="500" src="../Server/outputImg/rel/physicalhealth.png">
+                </div>
+                <div class="myInnerSlides fade" id="Sex" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/sex.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/sex.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="SkinCancer" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/skincancer.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/skincancer.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="SleepTime" style="text-align: center;">
+                    <img height="500" src="../Server/outputImg/rel/sleeptime.png">
+                </div>
+                <div class="myInnerSlides fade" id="Smoking" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/smoking.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/smoking.png">
+                    </div>
+                </div>
+                <div class="myInnerSlides fade" id="Stroke" style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+                    <div style="text-align: center;">
+                        <img height="500" src="../Server/outputImg/rel/stroke.png">
+                    </div>
+                    <div style="text-align: left;">
+                        <img height="450" src="../Server/outputImg/pie/stroke.png">
+                    </div>
                 </div>
             </div>
         </div>
         <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> Age&HeartDisease relation </h1></div><br>
-            <div style="text-align: center;">
-                <img height="500" src="../Server/OutputImg/Rel/Age.png">
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> AlcoholDrinking&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
+            <div class="title"><h1 class="slideTitle"> Heart disease prediction model </h1></div>
+            <div style="display: grid; grid-template-columns: 10% 40% 40% 10%; justify-items: center;">
+                <div></div>
                 <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/AlcoholDrinking.png">
+                    <h1 style="margin: 0px;"> Confusion matrix </h1><br>
+                    <img height="505" src="../Server/outputImg/confusion.png">
                 </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/AlcoholDrinking.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> Asthma&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/Asthma.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/Asthma.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> BMI&HeartDisease relation </h1></div><br>
-            <div style="text-align: center;">
-                <img height="500" src="../Server/OutputImg/Rel/BMI.png">
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> Diabetic&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/Diabetic.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/Diabetic.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> DiffWalking&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/DiffWalking.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/DiffWalking.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> GenHealth&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/GenHealth.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/GenHealth.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> KidneyDisease&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/KidneyDisease.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/KidneyDisease.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> PhysicalActivity&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/PhysicalActivity.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/PhysicalActivity.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> MentalHealth&HeartDisease relation </h1></div><br>
-            <div style="text-align: center;">
-                <img height="500" src="../Server/OutputImg/Rel/MentalHealth.png">
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> PhysicalHealth&HeartDisease relation </h1></div><br>
-            <div style="text-align: center;">
-                <img height="500" src="../Server/OutputImg/Rel/PhysicalHealth.png">
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> Race&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/Race.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/Race.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> Sex&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/Sex.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/Sex.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> SkinCancer&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/SkinCancer.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/SkinCancer.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> SleepTime&HeartDisease relation </h1></div><br>
-            <div style="text-align: center;">
-                <img height="500" src="../Server/OutputImg/Rel/SleepTime.png">
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> Smoking&HeartDisease relation </h1></div><br>
-            <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/Smoking.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/Smoking.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> Stroke&HeartDisease relation </h1></div><br>
-                <div style="display: grid; grid-template-columns: 70% 20% 10%; justify-items: center;">
-                <div style="text-align: center;">
-                    <img height="500" src="../Server/OutputImg/Rel/Stroke.png">
-                </div>
-                <div style="text-align: left;">
-                    <img height="450" src="../Server/OutputImg/Pie/Stroke.png">
-                </div>
-            </div><br><br>
-        </div>
-        <div class="mySlides fade">
-            <div class="title"><h1 class="slideTitle"> Predict heart disease </h1></div>
-            <div style="display: grid; grid-template-columns: 33% 33% 33%; justify-items: center;">
                 <div class="scrollbar_div">
+                    <h1 class="slideTitle"> Prediction </h1><br>
                     <div class="inputs">
                         <div class="tab">Are you male or female?<br><br>
-                            <select id="Sex" required>
+                            <select id="Sex_opt" required>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                             </select>
                         </div>
                         <div class="tab">Your age:<br><br>
-                            <select id="AgeCategory" required>
+                            <select id="AgeCategory_opt" required>
                                 <option value="18-24">18-24</option>
                                 <option value="25-29">25-29</option>
                                 <option value="30-34">30-34</option>
@@ -213,7 +196,7 @@
                             </select>
                         </div>
                         <div class="tab">Your ethnicity:<br><br>
-                            <select id="Race" required>
+                            <select id="Race_opt" required>
                                 <option value="American Indian/Alaskan Native">American Indian/Alaskan Native</option>
                                 <option value="White">White</option>
                                 <option value="Hispanic">Hispanic</option>
@@ -223,49 +206,49 @@
                             </select>
                         </div>
                         <div class="tab">Body Mass Index (BMI):<br><br>
-                            <input type="number" id="BMI" min="0" max="100">
+                            <input type="number" id="BMI_opt" min="0" max="100">
                         </div>
                         <div class="tab">Have you smoked at least 100 cigarettes in your entire life?<br><br>
-                            <select id="Smoking" required>
+                            <select id="Smoking_opt" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
                         <div class="tab">Heavy drinkers (more than 14 drinks per week for men and 7 for women)<br><br>
-                            <select id="AlcoholDrinking" required>
+                            <select id="AlcoholDrinking_opt" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
                         <div class="tab">On average, how many hours of sleep do you get in a 24-hour period?<br><br>
-                            <select id="SleepTime" required></select>
+                            <select id="SleepTime_opt" required></select>
                         </div>
                         <div class="tab">Adults who reported doing physical activity or exercise during the past 30 days other than their regular job<br><br>
-                            <select id="PhysicalActivity" required>
+                            <select id="PhysicalActivity_opt" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
                         <div class="tab">Ever told you had a stroke?<br><br>
-                            <select id="Stroke" required>
+                            <select id="Stroke_opt" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
                         <div class="tab">For how many days during the past 30 was your physical health not good?<br><br>
-                            <select id="PhysicalHealth" required></select>
+                            <select id="PhysicalHealth_opt" required></select>
                         </div>
                         <div class="tab">For how many days during the past 30 was your mental health not good?<br><br>
-                            <select id="MentalHealth" required></select>
+                            <select id="MentalHealth_opt" required></select>
                         </div>
                         <div class="tab">Do you have serious difficulty walking or climbing stairs?<br><br>
-                            <select id="DiffWalking" required>
+                            <select id="DiffWalking_opt" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
                         <div class="tab">Ever told you had diabetes?<br><br>
-                            <select id="Diabetic" required>
+                            <select id="Diabetic_opt" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                                 <option value="No, borderline diabetes">No, borderline diabetes</option>
@@ -273,7 +256,7 @@
                             </select>
                         </div>
                         <div class="tab">Would you say that in general your health is...<br><br>
-                            <select id="GenHealth" required>
+                            <select id="GenHealth_opt" required>
                                 <option value="Poor">Poor</option>
                                 <option value="Fair">Fair</option>
                                 <option value="Good">Good</option>
@@ -282,22 +265,39 @@
                             </select>
                         </div>
                         <div class="tab">Ever told you had asthma?<br><br>
-                            <select id="Asthma" required>
+                            <select id="Asthma_opt" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>  
                         <div class="tab">Not including kidney stones, bladder infection or incontinence, were you ever told you had kidney disease?<br><br>
-                            <select id="KidneyDisease" required>
+                            <select id="KidneyDisease_opt" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
                         <div class="tab">Ever told you had skin cancer?<br><br>
-                            <select id="SkinCancer" required>
+                            <select id="SkinCancer_opt" required>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
+                        </div>
+                        <div class="tab">
+                            <div style="text-align: left;">
+                                <img src="./res/loading.gif">
+                            </div>
+                        </div>
+                        <div id="results" class="tab" style="text-align:center">
+                            <div>The model prediction is...</div>
+                            <div><h2 id="prediction"></h2></div>
+                            <div>with a probability of...</div>
+                            <div><h2 id="probability"></h2></div><br>
+                            <div>Do you currently have heart diseases?</div><br>
+                            <select id="HeartDiseaseResponse" required>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                            <button type="submit" id="registerResponse" onclick="registerResponse()">Register response</button>
                         </div>
                         <div style="overflow:auto;">
                             <button type="submit" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
@@ -306,7 +306,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="grid-item" id="resultDiv"></div>
             </div>
         </div>
     </div>
@@ -320,22 +319,6 @@
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
-        <span class="dot" onclick="currentSlide(4)"></span>
-        <span class="dot" onclick="currentSlide(5)"></span>
-        <span class="dot" onclick="currentSlide(6)"></span>
-        <span class="dot" onclick="currentSlide(7)"></span>
-        <span class="dot" onclick="currentSlide(8)"></span>
-        <span class="dot" onclick="currentSlide(9)"></span>
-        <span class="dot" onclick="currentSlide(10)"></span>
-        <span class="dot" onclick="currentSlide(11)"></span>
-        <span class="dot" onclick="currentSlide(12)"></span>
-        <span class="dot" onclick="currentSlide(13)"></span>
-        <span class="dot" onclick="currentSlide(14)"></span>
-        <span class="dot" onclick="currentSlide(15)"></span>
-        <span class="dot" onclick="currentSlide(16)"></span>
-        <span class="dot" onclick="currentSlide(17)"></span>
-        <span class="dot" onclick="currentSlide(18)"></span>
-        <span class="dot" onclick="currentSlide(19)"></span>
     </div>
 
     <script src="js/controller.js"></script>

@@ -1,6 +1,6 @@
-addIntDropDown("PhysicalHealth", 0, 30);
-addIntDropDown("MentalHealth", 0, 30);
-addIntDropDown("SleepTime", 0, 24);
+addIntDropDown("PhysicalHealth_opt", 0, 30);
+addIntDropDown("MentalHealth_opt", 0, 30);
+addIntDropDown("SleepTime_opt", 0, 24);
 
 
 function addIntDropDown(dropdownId, min, max) {

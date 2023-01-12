@@ -50,7 +50,7 @@ input {
 .scrollbar_div {
   position: relative;
   width: 400px;
-  height: 400px;
+  height: 587px;
   border-radius: 20px;
   padding: 40px;
   box-sizing: border-box;
@@ -131,6 +131,16 @@ select {
 .mySlides {
   display: none;
   height: 550;
+}
+
+.slideshow-inner-container {
+  position: relative;
+  margin: auto;
+  display:block;
+}
+
+.myInnerSlides {
+  display: none;
 }
 
 .prev, .next {

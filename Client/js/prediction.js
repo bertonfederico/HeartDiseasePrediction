@@ -5,23 +5,23 @@ function getPrediction() {
 
 function getJson() {
     const data = {
-        BMI: document.getElementById("BMI").value,
-        Smoking: document.getElementById("Smoking").value,
-        AlcoholDrinking: document.getElementById("AlcoholDrinking").value,
-        Stroke: document.getElementById("Stroke").value,
-        PhysicalHealth: document.getElementById("PhysicalHealth").value,
-        MentalHealth: document.getElementById("MentalHealth").value,
-        DiffWalking: document.getElementById("DiffWalking").value,
-        Sex: document.getElementById("Sex").value,
-        AgeCategory: document.getElementById("AgeCategory").value,
-        Race: document.getElementById("Race").value,
-        Diabetic: document.getElementById("Diabetic").value,
-        PhysicalActivity: document.getElementById("PhysicalActivity").value,
-        GenHealth: document.getElementById("GenHealth").value,
-        SleepTime: document.getElementById("SleepTime").value,
-        Asthma: document.getElementById("Asthma").value,
-        KidneyDisease: document.getElementById("KidneyDisease").value,
-        SkinCancer: document.getElementById("SkinCancer").value
+        bmi: document.getElementById("BMI_opt").value,
+        smoking: document.getElementById("Smoking_opt").value,
+        alcoholdrinking: document.getElementById("AlcoholDrinking_opt").value,
+        stroke: document.getElementById("Stroke_opt").value,
+        physicalhealth: document.getElementById("PhysicalHealth_opt").value,
+        mentalhealth: document.getElementById("MentalHealth_opt").value,
+        diffwalking: document.getElementById("DiffWalking_opt").value,
+        sex: document.getElementById("Sex_opt").value,
+        agecategory: document.getElementById("AgeCategory_opt").value,
+        race: document.getElementById("Race_opt").value,
+        diabetic: document.getElementById("Diabetic_opt").value,
+        physicalactivity: document.getElementById("PhysicalActivity_opt").value,
+        genhealth: document.getElementById("GenHealth_opt").value,
+        sleeptime: document.getElementById("SleepTime_opt").value,
+        asthma: document.getElementById("Asthma_opt").value,
+        kidneydisease: document.getElementById("KidneyDisease_opt").value,
+        skincancer: document.getElementById("SkinCancer_opt").value
     }
     const postData = {
         id: "input",
@@ -31,6 +31,7 @@ function getJson() {
 }
 
 function sendRequest(jsonReq) {
+    showTab(17);
     xhr = new XMLHttpRequest();
     const url = "http://localhost:8080/openscoring/model/HeartDisease";
     xhr.open("POST", url, true);
@@ -40,9 +41,55 @@ function sendRequest(jsonReq) {
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             const json = JSON.parse(xhr.responseText);
-            document.getElementById("resultDiv").innerHTML = json.results.HeartDisease;
+            document.getElementById("prediction").innerHTML = json.results.heartdisease;
+            document.getElementById("probability").innerHTML = json.results["probability(" + json.results.heartdisease + ")"];
+            showTab(18);
         }
     }
     const data = JSON.stringify(jsonReq);
+    xhr.send(data);
+}
+
+function registerResponse() {
+    const currentdate = new Date(); ;
+    const date_id = "" + currentdate.getFullYear() + (currentdate.getMonth()+1) + currentdate.getDate() + currentdate.getHours() + currentdate.getMinutes() + currentdate.getSeconds();
+    const json = {
+        id: date_id,
+        bmi: Number(document.getElementById("BMI_opt").value),
+        smoking: document.getElementById("Smoking_opt").value,
+        alcoholdrinking: document.getElementById("AlcoholDrinking_opt").value,
+        stroke: document.getElementById("Stroke_opt").value,
+        physicalhealth: Number(document.getElementById("PhysicalHealth_opt").value),
+        mentalhealth: Number(document.getElementById("MentalHealth_opt").value),
+        diffwalking: document.getElementById("DiffWalking_opt").value,
+        sex: document.getElementById("Sex_opt").value,
+        agecategory: document.getElementById("AgeCategory_opt").value,
+        race: document.getElementById("Race_opt").value,
+        diabetic: document.getElementById("Diabetic_opt").value,
+        physicalactivity: document.getElementById("PhysicalActivity_opt").value,
+        genhealth: document.getElementById("GenHealth_opt").value,
+        sleeptime: Number(document.getElementById("SleepTime_opt").value),
+        asthma: document.getElementById("Asthma_opt").value,
+        kidneydisease: document.getElementById("KidneyDisease_opt").value,
+        skincancer: document.getElementById("SkinCancer_opt").value,
+        heartdisease: document.getElementById("HeartDiseaseResponse").value
+    }
+    const postData = {
+        id: "input",
+        arguments: json
+    }
+    xhr = new XMLHttpRequest();
+    const url = "http://127.0.0.1:5000/insert";
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.setRequestHeader('Accept', 'application/json');
+    xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            const json = JSON.parse(xhr.responseText);
+            document.getElementById("prediction");
+        }
+    }
+    const data = JSON.stringify(postData);
     xhr.send(data);
 }

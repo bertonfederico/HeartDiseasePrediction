@@ -51,6 +51,7 @@ function sendRequest(jsonReq) {
 }
 
 function registerResponse() {
+    showTab(19);
     const currentdate = new Date(); ;
     const date_id = "" + currentdate.getFullYear() + (currentdate.getMonth()+1) + currentdate.getDate() + currentdate.getHours() + currentdate.getMinutes() + currentdate.getSeconds();
     const json = {

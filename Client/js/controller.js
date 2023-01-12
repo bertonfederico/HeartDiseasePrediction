@@ -52,19 +52,13 @@ function showTab(n) {
 	} else {
 		document.getElementById("prevBtn").style.display = "inline";
 	}
-	if (n == (x.length - 3)) {
+	if (n == (x.length - 4)) {
 		document.getElementById("submitBtn").style.display = "inline";
 		document.getElementById("nextBtn").style.display = "none";
 	} else {
 		document.getElementById("nextBtn").style.display = "inline";
 	}
-	if (n == (x.length - 2)) {
-		x[n-1].style.display = "none";
-		document.getElementById("submitBtn").style.display = "none";
-		document.getElementById("nextBtn").style.display = "none";
-		document.getElementById("prevBtn").style.display = "none";
-	}
-	if (n == (x.length - 1)) {
+	if (n == (x.length - 3) || n == (x.length - 2) || n == (x.length - 1)) {
 		x[n-1].style.display = "none";
 		document.getElementById("submitBtn").style.display = "none";
 		document.getElementById("nextBtn").style.display = "none";
@@ -73,6 +67,10 @@ function showTab(n) {
 }
 
 function nextPrev(n) {
+	if (currentTab == 3 && document.getElementById("BMI_opt").value == "") {
+		document.getElementById("BMI_opt").placeholder = "You must enter a value";
+		return;
+	}
 	var x = document.getElementsByClassName("tab");
 	x[currentTab].style.display = "none";
 	currentTab = currentTab + n;

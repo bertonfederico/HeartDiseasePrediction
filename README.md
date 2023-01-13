@@ -33,7 +33,6 @@ Everything that follows can be installed via the script ```Server/0_install/0_in
 
 ## How does it works
 The operation of the system can be analyzed through the flowchart below:
-![Alt text](./Res/flow_diagram.svg)
 <img src="./Res/flow_diagram.svg">
 
 ### Cassandra database creation

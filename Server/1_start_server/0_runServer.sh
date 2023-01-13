@@ -30,7 +30,7 @@ sudo service cassandra start
 java -jar ../lib/openscoring-server-executable-2.1.1.jar &
 
 #SETTING SPARK AND CREATE PREDICTION MODEL
-$SPARK_HOME/bin/spark-submit --packages com.datastax.spark:spark-cassandra-connector_2.12:3.2.0,org.jpmml:pmml-sparkml:2.2.0,org.jpmml:pmml-sparkml-lightgbm:2.2.0,org.jpmml:pmml-sparkml-xgboost:2.2.0  --conf spark.sql.extensions=com.datastax.spark.connector.CassandraSparkExtensions --master yarn  --deploy-mode client  --driver-memory 3g  --executor-memory 3g  --executor-cores 2  --queue default ../modelCreation/createModel.py
+$SPARK_HOME/bin/spark-submit --packages com.datastax.spark:spark-cassandra-connector_2.12:3.2.0,org.jpmml:pmml-sparkml:2.2.0,org.jpmml:pmml-sparkml-lightgbm:2.2.0,org.jpmml:pmml-sparkml-xgboost:2.2.0  --conf spark.sql.extensions=com.datastax.spark.connector.CassandraSparkExtensions --master yarn  --deploy-mode client  --driver-memory 3g  --executor-memory 3g  --executor-cores 2  --queue default ./createModel.py
 
 #CREATING ENDPOINT TO INSERT 
 nohup python3 ./insertEndPoint.py &

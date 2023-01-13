@@ -155,9 +155,6 @@ df = oversampled_df.unionAll(undersampled_df)
 continuousFeatures = ['bmi', 'physicalhealth', 'mentalhealth', 'sleeptime']
 categoricalFeatures = ['agecategory', 'smoking', 'alcoholdrinking', 'stroke', 'diffwalking', 'sex', 'race', 'diabetic', 'physicalactivity', 'genhealth', 'asthma', 'kidneydisease', 'skincancer']
 
-# Indexer to change heartdisease column type from string to numerical
-diseaseEncoder = StringIndexer(inputCol = "heartdisease", outputCol = "heartdisease_encoded")
-
 # Assembler for continuous features: all the continuous features have to be assembled as a vector in the same column to be scaled
 continuousAssembler = VectorAssembler(inputCols = continuousFeatures, outputCol = "assembledFeatures")
 
@@ -165,8 +162,8 @@ continuousAssembler = VectorAssembler(inputCols = continuousFeatures, outputCol 
 continuousScaler = MinMaxScaler(inputCol = "assembledFeatures", outputCol = "normalizedFeatures")
 
 # Indexer and encoder: numerical encoder for categorical features and goal column
-categoricalIndexer = [StringIndexer(inputCol = column, outputCol = column + "_indexed").fit(df) for column in categoricalFeatures]
-categoricalEncoder = OneHotEncoder(inputCols = [col + '_indexed' for col in categoricalFeatures], outputCols=[col + '_encoded' for col in categoricalFeatures])
+categoricalIndexer = [StringIndexer(inputCol = column, outputCol = column + "_indexed").fit(df) for column in (categoricalFeatures + ['heartdisease'])]
+categoricalEncoder = OneHotEncoder(inputCols = [col + '_indexed' for col in categoricalFeatures], outputCols=[col + '_encoded' for col in (categoricalFeatures + ['heartdisease'])])
 
 # Assembler for all features: all the features are assembled in the 'final_features' column
 input = [col + '_encoded' for col in categoricalFeatures]
@@ -177,7 +174,7 @@ totalAssembler = VectorAssembler(inputCols = input, outputCol = "final_features"
 regressor = LogisticRegression(featuresCol = "final_features", labelCol = "heartdisease_encoded")
 
 # Inizializing pipeline ('categoricalIndexer' is already a list, so it must be concatenated with the list of remaining stages)
-stages = categoricalIndexer + [diseaseEncoder, categoricalEncoder, continuousAssembler, continuousScaler, totalAssembler, regressor]
+stages = categoricalIndexer + [categoricalEncoder, continuousAssembler, continuousScaler, totalAssembler, regressor]
 pipeline = Pipeline(stages = stages)
 
 

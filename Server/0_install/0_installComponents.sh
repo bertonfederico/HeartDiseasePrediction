@@ -20,6 +20,6 @@ pip install seaborn
 pip install pyspark2pmml
 pip install --upgrade openscoring
 pip install -U scikit-learn
-pip install Flask
+pip install flask
 pip install datetime
 pip install cassandra.cluster

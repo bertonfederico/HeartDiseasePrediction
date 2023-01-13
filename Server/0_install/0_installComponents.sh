@@ -12,6 +12,13 @@ wget https://downloads.apache.org/spark/spark-3.2.3/spark-3.2.3-bin-hadoop3.2.tg
 tar xvf spark-*
 mv spark-3.0.1-bin-hadoop2.7 SPARK_PATH
 
+# INSTALLING CASSANDRA
+apt-get install gnupg2 wget curl unzip apt-transport-https -y
+wget -q -O - https://www.apache.org/dist/cassandra/KEYS | apt-key add -
+sh -c 'echo "deb http://www.apache.org/dist/cassandra/debian 311x main" > /etc/apt/sources.list.d/cassandra.list'
+apt-get update -y
+apt-get install cassandra -y
+
 # INSTALLING PYTHON MODULES
 pip install pyspark==3.1.3
 pip install matplotlib

@@ -14,7 +14,7 @@ The project aims to:
 Everything that follows can be installed via the script ```Server/0_install/0_installComponents.sh```
 - Apache Hadoop 3.3.4
 - Apache Spark 3.2.3 (newer versions are not supported by Pyspark2pmml)
-- Cassandra (Cassandra 4.1, cqlsh 6.1.0)
+- Cassandra
 - OpenScoring-server-jar 2.1.1
 - Python libraries
     - pySpark

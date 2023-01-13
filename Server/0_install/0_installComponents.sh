@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# INSTALLING JAVA 8
+sudo apt-get install openjdk-8-jdk
+sudo update-alternatives --set java /usr/lib/jvm/jdk1.8.0_version/bin/jav
+
 # INSTALLING HADOOP 3.3.4
 HADOOP_PATH = "/home/bigdata2022"
 wget https://downloads.apache.org/hadoop/common/hadoop-3.3.4/hadoop-3.3.4.tar.gz

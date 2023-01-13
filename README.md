@@ -12,10 +12,11 @@ The project aims to:
 
 ## Prerequisites
 Everything that follows can be installed via the script ```Server/0_install/0_installComponents.sh```
+- Java 8
 - Apache Hadoop 3.3.4
 - Apache Spark 3.2.3 (newer versions are not supported by Pyspark2pmml)
 - Cassandra
-- OpenScoring-server-jar 2.1.1
+- OpenScoring-server-jar 2.1.1 (already included in this repo)
 - Python libraries
     - pySpark
     - pyspark2pmml
@@ -55,11 +56,11 @@ The operation of the system can be analyzed through the flowchart below:
 - Creates a ML pipeline:
     - Indexes all categorical features producing -> indexed_categorical_features
     - Encodes all indexed_categorical_features producing -> encoded_categorical_features
-    - Assembles all continuous fatures into a single column -> assembled_continuous_features
-    - Normalizes newly assembled continuous features -> normalize_continuous_features
+    - Assembles all continuous fatures into a single column producing -> assembled_continuous_features
+    - Normalizes newly assembled continuous features producing -> normalize_continuous_features
     - Assembles normalize_continuous_features with all encoded_categorical_features (exept the goal feature, aka 'heartdisease') into a single column producing -> final_features
     - Creates a logistic regression for 'heartdisease' based on final_features
-- Splits the dataframe into 'train' (70%) and test (30%)
+- Splits the dataframe into train (70%) and test (30%)
 - Trains the model with the train dataframe
 - Makes predictions with the test dataframe
 - Estimates the accuracy of predictions with a MulticlassClassificationEvaluator
@@ -67,19 +68,19 @@ The operation of the system can be analyzed through the flowchart below:
 - Uploads the PMML model into Openscoring
 
 ### Graphical analyses
-- By using matplotlib, pandas, seaborn and scikit-learn, creates the following charts:
-    - HeatMap for correlation matrix with all features
-    - HeatMap for the confusion matrix of the prediction model
-    - Pie chart to visualize the distribution of responses for categorical features
-    - Bar chart to visualize the distribution of heart diseases for each category of categorical features
-    - Kernel density estimate plot to visualize the distribution of heart diseases, no heart diseases and total responses for continuous features
+By using matplotlib, pandas, seaborn and scikit-learn, creates the following charts:
+- HeatMap for correlation matrix with all features
+- HeatMap for the confusion matrix of the prediction model
+- Pie chart to visualize the distribution of responses for categorical features
+- Bar chart to visualize the distribution of heart diseases for each category of categorical features
+- Kernel density estimate plot to visualize the distribution of heart diseases, no heart diseases and total responses for continuous features
 
 ### Graphical user interface
 Creates a web page that:
 - Shows statistical graphs abount the dataset
 - Shows the confusion matrix heatmap, to give an idea of the model accuracy
-- Shows a form to make prediction, making requests to the prediction endpoint
-- Gives the ability to enter the data just provided into the database, adding whether or not the subject has heart disease.
+- Shows a form to make predictions, sending requests to the prediction endpoint
+- Gives the ability to enter the data just provided into the database, adding the information inherent in the patient's current heart status (heart diseases or not)
 
 
 
@@ -91,5 +92,5 @@ After installing the necessary components, you need to create a distributed data
 To start the server, simply run the script ```Server/1_start_server/0_runServer.sh```
 
 ### Stopping server
-IN order to stop the server, simply run the script ```Server/2_stop_server/stopServer.sh```
+In order to stop the server, simply run the script ```Server/2_stop_server/stopServer.sh```
 

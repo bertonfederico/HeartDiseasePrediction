@@ -65,7 +65,7 @@ The operation of the system can be analyzed through the flowchart below:
 - Makes predictions with the test dataframe
 - Estimates the accuracy of predictions with a MulticlassClassificationEvaluator
 - Builds a PMML model with 'pyspark2pmml' lib
-- Uploads the PMML model into Openscoring
+- Uploads the PMML model into Openscoring that expose an endpoint for prediction accepting POST requests at 'http://localhost:8080/openscoring/model/HeartDisease'
 
 ### Graphical analyses
 By using matplotlib, pandas, seaborn and scikit-learn, creates the following charts:

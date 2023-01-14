@@ -17,10 +17,10 @@ $HADOOP_DIR/sbin/start-yarn.sh
 jps
 
 #DELETING INPUT/OUTPUT DIRECTORY IN HDFS AND LOCAL
-rm -r ../OutputImg/Pie/*
-rm -r ../OutputImg/Rel/*
-rm -r ../OutputImg/correlation.png
-rm -r ../OutputImg/confusion.png
+rm -r ../outputImg/pie/*
+rm -r ../outputImg/rel/*
+rm -r ../outputImg/correlation.png
+rm -r ../outputImg/confusion.png
 $HADOOP_DIR/bin/hdfs dfsadmin -safemode leave
 
 #STARTING CASSANDRA SERVICE

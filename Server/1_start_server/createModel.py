@@ -58,7 +58,7 @@ def plotDistributionCategoricalChart(name_feature, indexesToChange, labelsToChan
         i = i+1
     plt.legend(labels, loc="best")
     plt.tight_layout()
-    plt.savefig('../outputImg/pIe/' + name_feature + '.png', transparent=True)
+    plt.savefig('../outputImg/pie/' + name_feature + '.png', transparent=True)
 for catFeat in (categoricalFeatures + ['heartdisease']):
     plotDistributionCategoricalChart(catFeat, [], [])
 plotDistributionCategoricalChart('race', [3], ['Indian/Alaskan'])

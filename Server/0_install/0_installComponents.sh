@@ -33,4 +33,4 @@ pip install --upgrade openscoring
 pip install -U scikit-learn
 pip install flask
 pip install datetime
-pip install cassandra.cluster
+pip install cassandra.driver

@@ -46,7 +46,7 @@ The operation of the system can be analyzed through the flowchart below:
 ### Insertion endpoint
 - Creates connection with Cassandra db with 'cassandra.cluster' lib
 - Creates an app with Flask
-- Exposes an endpoint for insertion in db accepting POST requests at 'http://127.0.0.1:5000/insert'
+- Exposes an endpoint for insertion in db accepting POST requests at http://127.0.0.1:5000/insert
 - Runs the app
 
 ### Prediction model creation

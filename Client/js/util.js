@@ -12,10 +12,3 @@ function addIntDropDown(dropdownId, min, max) {
         selectMenu.appendChild(tempOption);
     }
 }
-
-function addLooadingGif() {
-    resultDiv = document.getElementById("resultDiv");
-    const image = document.createElement("img");
-    image.src = "./res/loading.gif";
-    resultDiv.appendChild(image);
-}

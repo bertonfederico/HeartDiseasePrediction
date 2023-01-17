@@ -194,3 +194,34 @@ select {
   margin-bottom:15px;
   margin-top:15px;
 }
+
+.slideGrid702010 {
+  display: grid;
+  grid-template-columns: 70% 20% 10%;
+  justify-items: center;
+}
+
+.grid10404010 {
+  display: grid;
+  grid-template-columns: 10% 40% 40% 10%;
+  justify-items: center;
+}
+
+
+
+
+/* Images */
+.centeredDiv {
+  text-align: center;
+}
+
+.leftDiv {
+  text-align: left;
+}
+
+
+
+/* Button container */
+.buttonContainer {
+  overflow: auto;
+}

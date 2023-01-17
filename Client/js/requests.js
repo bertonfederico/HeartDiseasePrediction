@@ -53,7 +53,10 @@ function sendRequest(jsonReq) {
 function registerResponse() {
     showTab(19);
     const currentdate = new Date(); ;
-    const date_id = "" + currentdate.getFullYear() + (currentdate.getMonth()+1) + currentdate.getDate() + currentdate.getHours() + currentdate.getMinutes() + currentdate.getSeconds();
+    let date_id = "" + currentdate.getFullYear() + (currentdate.getMonth()+1) + currentdate.getDate() + currentdate.getHours() + currentdate.getMinutes() + currentdate.getSeconds();
+    if (location.hostname != "") {
+        date_id += date_id + ocation.hostname;
+    }
     const json = {
         id: date_id,
         bmi: Number(document.getElementById("BMI_opt").value),

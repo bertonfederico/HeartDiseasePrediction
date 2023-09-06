@@ -55,7 +55,7 @@ function registerResponse() {
     const currentdate = new Date(); ;
     let date_id = "" + currentdate.getFullYear() + (currentdate.getMonth()+1) + currentdate.getDate() + currentdate.getHours() + currentdate.getMinutes() + currentdate.getSeconds();
     if (location.hostname != "") {
-        date_id += date_id + ocation.hostname;
+        date_id += date_id + location.hostname;
     }
     const json = {
         id: date_id,

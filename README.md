@@ -1,4 +1,6 @@
 # HeartDiseasePrediction
+![image](https://github.com/bertonfederico/HeartDiseasePrediction/assets/105301467/60741845-e651-499c-89bd-cad8a5ae2558)
+
 ## Description of the project
 The project aims to:
 - create a model for heart disease prediction starting with a [dataset](https://exploratory.io/data/YUi1hrv1vj/heart-2020-cleaned-kXz7WYW9NX)
